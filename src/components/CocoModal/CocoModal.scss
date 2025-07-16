@@ -16,7 +16,7 @@
   width: 0;
 
   &:focus {
-    &+label {
+    & + label {
       outline: solid 1px red;
     }
   }
@@ -328,7 +328,7 @@
     }
   }
 
-  &> :not(:last-child) {
+  & > :not(:last-child) {
     padding-right: 10px;
   }
 
@@ -339,7 +339,7 @@
     position: absolute;
     width: 0;
 
-    &:focus+label {
+    &:focus + label {
       outline: solid 1px colors.$red;
     }
   }
@@ -362,7 +362,7 @@
   }
 
   // Is checked
-  & input:checked+label {
+  & input:checked + label {
     background-color: colors.$light-turquoise;
   }
 
@@ -371,7 +371,7 @@
     pointer-events: none;
   }
 
-  & input:disabled+label {
+  & input:disabled + label {
     background-color: colors.$light-grey;
     border: 2px solid colors.$medium-grey;
     color: colors.$medium-grey;
@@ -395,7 +395,8 @@
 }
 
 /* Download type selector */
-.types-container {}
+.types-container {
+}
 
 /* Colors options */
 .color-hex-container {
@@ -412,7 +413,7 @@
   & .edit-color-settings-container {
     margin-top: 15px;
 
-    &> :not(:first-child) {
+    & > :not(:first-child) {
       margin-top: 2px;
     }
   }

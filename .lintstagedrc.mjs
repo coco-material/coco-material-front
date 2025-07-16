@@ -1,9 +1,8 @@
 export default {
   '*.{js,ts,vue}': [
     'eslint --fix',
-    'prettier --ignore-unknown --stdin --stdin-filepath "{}"',
   ],
-  '*.{js,ts,vue,scss,html}': [
+  '*.{js,ts,vue,scss,css,html}': [
     'prettier --ignore-unknown --stdin --stdin-filepath "{}"',
   ],
 };

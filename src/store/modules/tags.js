@@ -17,7 +17,7 @@ const mutations = {
   },
   updateSearchTags(state, tag) {
     if (!state.searchTags.includes(tag)) {
-      state.searchTags.push(tag);
+      state.searchTags.push(tag)
     }
   },
   removeSearchTag(state, tag) {
