@@ -16,7 +16,9 @@ const mutations = {
     state.searchTags = []
   },
   updateSearchTags(state, tag) {
-    state.searchTags.push(tag)
+    if (!state.searchTags.includes(tag)) {
+      state.searchTags.push(tag);
+    }
   },
   removeSearchTag(state, tag) {
     const index = state.searchTags.findIndex((it) => it === tag)
