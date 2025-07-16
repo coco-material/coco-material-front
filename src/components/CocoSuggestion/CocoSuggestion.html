@@ -1,40 +1,39 @@
 <div class="suggestion-host">
   <h3 class="title">Missing something?</h3>
   <p class="text">
-    If you are missing an importan image, send us your idea and we'll try to include
-    it in the library as soon as posible :-)
+    If you are missing an importan image, send us your idea and we'll try to include it in the
+    library as soon as posible :-)
   </p>
   <!-- FORM -->
   <form @submit.prevent="sendSuggestion()">
     <fieldset>
       <input
-        type=text
+        type="text"
         id="suggestion"
         name="suggestion"
         maxlength="200"
         required
         placeholder="Type your suggestion (max 200 chars.)"
-        v-model="form.suggestion" />
+        v-model="form.suggestion"
+      />
     </fieldset>
     <fieldset>
-      <button
-        type="submit"
-        :disabled="isLoading">
-        {{ isLoading? 'Sending...': 'Send' }}
-      </button>
+      <button type="submit" :disabled="isLoading">{{ isLoading? 'Sending...': 'Send' }}</button>
     </fieldset>
   </form>
 
   <transition name="result">
     <div class="text success" v-if="showSuccess">
-      We have received your suggestion.<br /> Remember that you can send us as many as you want.
+      We have received your suggestion.<br />
+      Remember that you can send us as many as you want.
     </div>
   </transition>
 
   <transition name="result">
     <div class="text error" v-if="showError">
       There was an error and your suggestion could not be sent.<br />
-      Please, try again later or you can <a href="mailto:soyesthermoreno@gmail.com">send us an email</a>.
+      Please, try again later or you can
+      <a href="mailto:soyesthermoreno@gmail.com">send us an email</a>.
     </div>
   </transition>
 
@@ -44,7 +43,8 @@
       class="highlight"
       href="https://tree.taiga.io/project/esthermoreno-cocomaterial/issues?type=1309828"
       target="_blank"
-      title="Visit to CocoMaterial's Taiga project">
+      title="Visit to CocoMaterial's Taiga project"
+    >
       here
     </a>
   </div>

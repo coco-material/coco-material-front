@@ -1,5 +1,3 @@
-@import '@/variables';
-
 .suggestion-host {
   display: flex;
   flex-direction: column;
@@ -18,7 +16,7 @@
 }
 
 .text {
-  color: $color-grey;
+  color: colors.$grey;
   font-size: 14px;
   line-height: 24px;
   margin: auto;
@@ -30,12 +28,12 @@
   }
 
   & strong {
-    color: $color-black;
+    color: colors.$black;
     font-weight: 700;
   }
 
   & a {
-    color: $color-turquoise;
+    color: colors.$turquoise;
     text-decoration: none;
     font-weight: 700;
 
@@ -47,18 +45,17 @@
 
   &.success,
   &.error {
-    border: 3px solid $color-light-turquoise;
-    border-radius: .5rem;
-    margin: .8rem 0;
-    padding: .5rem;
+    border: 3px solid colors.$light-turquoise;
+    border-radius: 0.5rem;
+    margin: 0.8rem 0;
+    padding: 0.5rem;
     width: 100%;
   }
 
   &.error {
-    border-color: $color-pink;
+    border-color: colors.$pink;
   }
 }
-
 
 form {
   display: flex;
@@ -75,8 +72,8 @@ form {
     margin-left: 1rem;
 
     @media (max-width: 315px) {
-        margin-left: 0;
-        margin-top: 1rem;
+      margin-left: 0;
+      margin-top: 1rem;
     }
   }
 
@@ -88,16 +85,16 @@ form {
   }
 
   & input {
-    background-color: $color-white;
+    background-color: colors.$white;
     border-radius: 3px;
-    border: 1px solid $color-medium-grey;
+    border: 1px solid colors.$medium-grey;
     box-sizing: border-box;
-    color: $color-grey;
+    color: colors.$grey;
     font-size: 16px;
     height: 48px;
     min-width: 360px;
     padding: 0 25px;
-    transition: all ease .3s;
+    transition: all ease 0.3s;
 
     @media (max-width: 510px) {
       max-width: 250px;
@@ -111,39 +108,39 @@ form {
     &:hover,
     &:active,
     &:focus {
-      border-color: $color-grey;
-      color: $color-black;
+      border-color: colors.$grey;
+      color: colors.$black;
     }
   }
 
   & button {
     align-items: center;
-    background-color: $color-light-turquoise;
+    background-color: colors.$light-turquoise;
     border-radius: 6px;
-    border: 2px solid $color-turquoise;
-    color: $color-black;
+    border: 2px solid colors.$turquoise;
+    color: colors.$black;
     display: flex;
     font-weight: 700;
     height: 48px;
     justify-content: center;
     padding: 15px 25px;
     text-align: center;
-    transition: all ease .3s;
+    transition: all ease 0.3s;
 
     @media (max-width: 768px) {
       font-size: 13px;
     }
 
     &:hover {
-      background-color: $color-turquoise;
-      color: $color-white;
+      background-color: colors.$turquoise;
+      color: colors.$white;
     }
 
     &:disabled,
     &[disabled] {
-      background-color: $color-light-grey;
-      border-color: $color-grey;
-      color: $color-grey;
+      background-color: colors.$light-grey;
+      border-color: colors.$grey;
+      color: colors.$grey;
     }
   }
 }

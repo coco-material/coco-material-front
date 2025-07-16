@@ -1,5 +1,5 @@
 <template src="./CocoSuggestion.html" lang="html"></template>
-<style src="./CocoSuggestion.scss"  lang="scss" scoped></style>
+<style src="./CocoSuggestion.scss" lang="scss" scoped></style>
 
 <script>
 import { defineComponent } from 'vue'
@@ -7,29 +7,30 @@ import api from '@/service/api'
 
 export default defineComponent({
   name: 'CocoSuggestion',
-  data () {
+  data() {
     return {
       form: {},
       isLoading: false,
       showSuccess: false,
-      showError: false
+      showError: false,
     }
   },
   methods: {
-    async sendSuggestion () {
+    async sendSuggestion() {
       if (!this.isLoading) {
         try {
           this.isLoading = true
           await api.sendSuggestion(this.form)
           this.showSuccessMessage()
         } catch (err) {
+          console.log(err)
           this.showErrorMessage()
         } finally {
           this.isLoading = false
         }
       }
     },
-    showSuccessMessage () {
+    showSuccessMessage() {
       this.form = {}
       this.showError = false
       this.showSuccess = true
@@ -37,13 +38,13 @@ export default defineComponent({
         this.showSuccess = false
       }, 5000)
     },
-    showErrorMessage () {
+    showErrorMessage() {
       this.showSuccess = false
       this.showError = true
       setTimeout(() => {
         this.showError = false
       }, 5000)
-    }
-  }
+    },
+  },
 })
 </script>

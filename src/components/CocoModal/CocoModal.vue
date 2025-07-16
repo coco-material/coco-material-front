@@ -1,5 +1,5 @@
 <template src="./CocoModal.html" lang="html"></template>
-<style src="./CocoModal.scss"  lang="scss" scoped></style>
+<style src="./CocoModal.scss" lang="scss" scoped></style>
 
 <script>
 import { defineComponent } from 'vue'
@@ -13,9 +13,9 @@ export default defineComponent({
     customizeBulk: null,
     totalVectors: null,
     tags: null,
-    isASuggestion: null
+    isASuggestion: null,
   },
-  data () {
+  data() {
     return {
       fillColor: ['#FFFFFF', '#ff7878', '#ffa569', '#ffde77', '#75e0d5', '#9bafff', 'none'],
       defaultFill: '#FFFFFF',
@@ -34,42 +34,38 @@ export default defineComponent({
       downloadSuggested: false,
       size: 0, // values: 0, 128, 256, 512
       cooldown: false,
-      preventKeys: false
+      preventKeys: false,
     }
   },
   computed: {
     // Form inputs options
-    disableTypeSvg () {
+    disableTypeSvg() {
       return !(this.vector && this.vector.svg)
     },
-    disableTypePng () {
+    disableTypePng() {
       return !(this.vector && this.vector.svg)
     },
-    disableTypeGif () {
+    disableTypeGif() {
       return !(this.vector && (this.vector.gif || this.vector.coloredGif))
     },
-    disableColorBW () {
+    disableColorBW() {
       return this.downloadType === 'gif' && !this.vector.gif
     },
-    disableColorSuggestion () {
+    disableColorSuggestion() {
       return !(
-        (
-          this.downloadType !== 'gif' &&
-            (this.vector.coloredSvg || this.vector.fillColor || this.vector.strokeColor)
-        ) || (
-          this.downloadType === 'gif' &&
-            this.vector.coloredGif
-        )
+        (this.downloadType !== 'gif' &&
+          (this.vector.coloredSvg || this.vector.fillColor || this.vector.strokeColor)) ||
+        (this.downloadType === 'gif' && this.vector.coloredGif)
       )
     },
-    disableColorEdit () {
+    disableColorEdit() {
       return this.downloadType === 'gif'
     },
-    disableSizeChoices () {
+    disableSizeChoices() {
       return this.downloadType !== 'png'
     },
     // Vector values
-    selectedGifUrl () {
+    selectedGifUrl() {
       switch (this.colorOption) {
         case 'black-white':
           return this.vector.gif
@@ -78,9 +74,9 @@ export default defineComponent({
         default:
           return ''
       }
-    }
+    },
   },
-  async mounted () {
+  async mounted() {
     document.body.style.width = document.body.clientWidth + 'px'
     document.body.style.top = `-${window.scrollY}px`
     document.body.style.position = 'fixed'
@@ -94,15 +90,15 @@ export default defineComponent({
       this.$router.replace({ query })
     }
   },
-  async umounted () {
+  async umounted() {
     document.body.style.position = undefined
   },
-  created () {
+  created() {
     window.addEventListener('keydown', this.escapeHandler, true)
   },
   methods: {
     // Close modal
-    escapeHandler (e) {
+    escapeHandler(e) {
       if (!this.cooldown & !this.preventKeys) {
         if (e.key === 'ArrowLeft' && this.vector.neighbors.previous) {
           this.goToVector(this.vector.neighbors.previous.id)
@@ -119,7 +115,7 @@ export default defineComponent({
         this.close()
       }
     },
-    close () {
+    close() {
       const actualScroll = document.body.style.top
       document.body.style.position = null
       document.body.style.top = null
@@ -136,7 +132,7 @@ export default defineComponent({
       }
       window.removeEventListener('keydown', this.escapeHandler, true)
     },
-    async _getVector (vectorId) {
+    async _getVector(vectorId) {
       // const query = Object.assign({}, this.$route.query, { vectorId })
       // this.$router.push({ path: '/results', query })
 
@@ -145,7 +141,7 @@ export default defineComponent({
         id: vectorId,
         tags: !this.isASuggestion ? this.tags : [],
         similarity: this.isASuggestion ? this.tags : [],
-        ordering: this.$route.query.ordering
+        ordering: this.$route.query.ordering,
       })
       this.vectorTags = this.vector.tags.split(',')
 
@@ -156,7 +152,7 @@ export default defineComponent({
         // Check if the image has only one path
         const svgEl = document.createElement('div')
         svgEl.innerHTML = this.svgCode
-        this.hasJustStroke = (svgEl.querySelectorAll('path').length === 1)
+        this.hasJustStroke = svgEl.querySelectorAll('path').length === 1
       }
 
       // Select options
@@ -169,7 +165,8 @@ export default defineComponent({
       } else {
         this.selectDownloadTypePng()
         // Check if image has color suggestion
-        this.hasColorSuggestion = (this.vector.coloredSvg || this.vector.fillColor || this.vector.strokeColor)
+        this.hasColorSuggestion =
+          this.vector.coloredSvg || this.vector.fillColor || this.vector.strokeColor
 
         // If hasColorSuggesteion select it by default
         if (this.hasColorSuggestion) {
@@ -177,7 +174,7 @@ export default defineComponent({
         }
       }
     },
-    async goToVector (vectorId) {
+    async goToVector(vectorId) {
       // Inicialize form params
       this.downloadType = 'png' // values: png, svg
       this.colorOption = 'black-white' // values: black-white, color-suggestion, edit
@@ -194,20 +191,20 @@ export default defineComponent({
       this.$router.replace({ query })
     },
     // Tag clicked
-    searchVector (tag) {
+    searchVector(tag) {
       this.close()
       this.$emit('search', tag)
     },
     // Download type settings
-    selectDownloadTypePng () {
+    selectDownloadTypePng() {
       this.downloadType = 'png'
       this.size = 0
     },
-    selectDownloadTypeSvg () {
+    selectDownloadTypeSvg() {
       this.downloadType = 'svg'
       this.size = 0
     },
-    selectDownloadTypeGif () {
+    selectDownloadTypeGif() {
       this.downloadType = 'gif'
       this.size = 0
     },
@@ -222,7 +219,7 @@ export default defineComponent({
     //    - Images with one path:
     //       * Path 0 is stroke
     //
-    selectColorBlackAndWhite () {
+    selectColorBlackAndWhite() {
       this.colorOption = 'black-white'
 
       this.svgCode = this.vector.svgContent
@@ -230,7 +227,7 @@ export default defineComponent({
       this.selectFill()
       this.selectStroke()
     },
-    selectColorSuggestion () {
+    selectColorSuggestion() {
       this.colorOption = 'color-suggestion'
 
       this.svgCode = this.vector.coloredSvgContent
@@ -246,7 +243,7 @@ export default defineComponent({
         this.downloadSuggested = true
       }
     },
-    selectColorEdit () {
+    selectColorEdit() {
       this.colorOption = 'edit'
 
       this.strokeHexValue = '#000000'
@@ -254,7 +251,7 @@ export default defineComponent({
       this.svgCode = this.vector.svgContent
       this.downloadSuggested = false
     },
-    selectStroke (color) {
+    selectStroke(color) {
       const pathIdx = this.hasJustStroke ? 0 : 1
       const pathEl = document.querySelectorAll('#preview path')[pathIdx]
 
@@ -272,7 +269,7 @@ export default defineComponent({
         pathEl.style.fill = this.strokeHexValue
       }
     },
-    selectFill (color) {
+    selectFill(color) {
       if (this.hasJustStroke) {
         return // Threre is no fill to set
       }
@@ -293,7 +290,7 @@ export default defineComponent({
       }
     },
     // Submit form
-    download () {
+    download() {
       const queryUrl = new URLSearchParams()
 
       // img format
@@ -306,7 +303,7 @@ export default defineComponent({
 
       if (!this.downloadSuggested) {
         // fill
-        const fill = (this.fillHexValue)
+        const fill = this.fillHexValue
           ? this.fillHexValue.replace('#', '')
           : this.defaultFill.replace('#', '')
         queryUrl.set('fill', fill)
@@ -323,9 +320,7 @@ export default defineComponent({
 
       if (this.customizeBulk) {
         // tags
-        const tags = this.tags.length
-          ? this.tags.join()
-          : 'all'
+        const tags = this.tags.length ? this.tags.join() : 'all'
         queryUrl.set('tags', tags)
       } else {
         // id
@@ -333,23 +328,21 @@ export default defineComponent({
       }
 
       // and download the image
-      window.open(`${process.env.VUE_APP_API_URL}/download/?${queryUrl.toString()}`, '_blank')
+      window.open(`${import.meta.env.VUE_APP_API_URL}/download/?${queryUrl.toString()}`, '_blank')
       this.trackDownload()
     },
-    trackDownload (name) {
+    trackDownload() {
       if (this.$matomo) {
-        const category = this.customizeBulk
-          ? 'download-bulk'
-          : 'download'
-        const action = this.downloadType === 'svg'
-          ? 'svg'
-          : `${this.downloadType}-${this.size}`
+        const category = this.customizeBulk ? 'download-bulk' : 'download'
+        const action = this.downloadType === 'svg' ? 'svg' : `${this.downloadType}-${this.size}`
         const name = this.customizeBulk
-          ? (this.tags.length ? this.tags.join() : 'all')
+          ? this.tags.length
+            ? this.tags.join()
+            : 'all'
           : this.vector.name
         this.$matomo.trackEvent(category, action, name)
       }
-    }
-  }
+    },
+  },
 })
 </script>

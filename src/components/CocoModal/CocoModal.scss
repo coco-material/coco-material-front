@@ -1,5 +1,3 @@
-@import "@/variables";
-
 /* Modal style */
 .modal-backdrop {
   align-items: center;
@@ -16,6 +14,7 @@
 .radio-label[type='radio'] {
   height: 0;
   width: 0;
+
   &:focus {
     & + label {
       outline: solid 1px red;
@@ -23,9 +22,8 @@
   }
 }
 
-
 .modal {
-  background: $color-white;
+  background: colors.$white;
   border-radius: 6px;
   box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.07);
   display: flex;
@@ -43,7 +41,6 @@
     height: 100vh;
     max-height: 100vh;
   }
-
 }
 
 .modal-header,
@@ -67,14 +64,14 @@
 
 .modal-body {
   display: grid;
-  grid-template-areas: "prev main next";
+  grid-template-areas: 'prev main next';
   grid-template-columns: min-content 1fr min-content;
   grid-template-rows: 1fr;
 
   @media (max-width: 890px) {
     grid-template-areas:
-      "main main"
-      "prev next";
+      'main main'
+      'prev next';
     padding-bottom: 10px;
     grid-template-columns: auto;
     grid-template-rows: auto;
@@ -100,7 +97,6 @@
   align-items: center;
   justify-content: center;
   max-width: 36px;
-
 
   @media (max-width: 890px) {
     max-width: none;
@@ -144,13 +140,13 @@
 /* Title */
 .title {
   align-self: flex-start;
-  color: $color-black;
+  color: colors.$black;
   display: flex;
   font-size: 28px;
   flex-shrink: 0;
   line-height: 32px;
   font-weight: 500;
-  margin: 0 1rem .5rem 0;
+  margin: 0 1rem 0.5rem 0;
 }
 
 /* Tags list */
@@ -170,13 +166,13 @@
   }
 
   .popular-btn {
-    background: $color-light-grey;
+    background: colors.$light-grey;
     border: none;
     border-radius: 15px;
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
-    font-family: "Red Hat Display";
+    font-family: 'Red Hat Display';
     max-width: 190px;
     margin: 0 5px 0 0;
     overflow: hidden;
@@ -185,8 +181,8 @@
     white-space: nowrap;
 
     &:hover {
-      background-color: $color-turquoise-dark;
-      color: $color-white;
+      background-color: colors.$turquoise-dark;
+      color: colors.$white;
     }
   }
 }
@@ -197,15 +193,15 @@
 .btn-next {
   background: transparent;
   border: none;
-  color: $color-black;
+  color: colors.$black;
   cursor: pointer;
-  font-family: "Red Hat Display", sans-serif;
+  font-family: 'Red Hat Display', sans-serif;
   font-weight: 500;
   transition: all ease 0.1s;
 
   &:disabled,
   &[disabled] {
-    color: $color-medium-grey;
+    color: colors.$medium-grey;
     cursor: default;
   }
 }
@@ -214,7 +210,6 @@
   align-self: flex-start;
   font-size: 20px;
   padding: 0 10px;
-
 }
 
 .btn-previous,
@@ -251,12 +246,12 @@
   }
 
   .svg {
-    background-image: url("../../assets/square.svg");
-    background-color: $color-light-grey;
+    background-image: url('../../assets/square.svg');
+    background-color: colors.$light-grey;
   }
 
   .gif {
-    background: $color-white;
+    background: colors.$white;
 
     .gif-image {
       max-height: 335px;
@@ -269,10 +264,8 @@
     }
   }
 
-
-
   .preview-title {
-    color: $color-grey;
+    color: colors.$grey;
     display: block;
     font-size: 12px;
     font-style: italic;
@@ -306,9 +299,9 @@
     position: relative;
 
     &:before {
-      outline: 2px solid $color-red;
+      outline: 2px solid colors.$red;
       border-radius: 2px;
-      content: "";
+      content: '';
       left: 0px;
       position: absolute;
       transform: rotate(-45deg);
@@ -318,7 +311,7 @@
   }
 
   &.selected {
-    outline: 2px solid $color-light-blue;
+    outline: 2px solid colors.$light-blue;
   }
 }
 
@@ -347,7 +340,7 @@
     width: 0;
 
     &:focus + label {
-      outline: solid 1px $color-red;
+      outline: solid 1px colors.$red;
     }
   }
 
@@ -356,11 +349,11 @@
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    border: 2px solid $color-turquoise;
+    border: 2px solid colors.$turquoise;
     border-radius: 4px;
-    color: $color-black;
+    color: colors.$black;
     cursor: pointer;
-    font-family: "Red Hat Display", sans-serif;
+    font-family: 'Red Hat Display', sans-serif;
     font-size: 14px;
     font-weight: 500;
     padding: 12px 10px;
@@ -370,7 +363,7 @@
 
   // Is checked
   & input:checked + label {
-    background-color: $color-light-turquoise;
+    background-color: colors.$light-turquoise;
   }
 
   // Is disabled
@@ -378,10 +371,10 @@
     pointer-events: none;
   }
 
-  & input:disabled+label {
-    background-color: $color-light-grey;
-    border: 2px solid $color-medium-grey;
-    color: $color-medium-grey;
+  & input:disabled + label {
+    background-color: colors.$light-grey;
+    border: 2px solid colors.$medium-grey;
+    color: colors.$medium-grey;
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -402,7 +395,8 @@
 }
 
 /* Download type selector */
-.types-container { }
+.types-container {
+}
 
 /* Colors options */
 .color-hex-container {
@@ -448,7 +442,7 @@
   }
 
   & .hex {
-    border: 1px solid $color-medium-grey;
+    border: 1px solid colors.$medium-grey;
     border-right: none;
     border-radius: 2px 0 0 2px;
     margin-left: 15px;
@@ -457,7 +451,7 @@
 
     @media (max-width: 890px) {
       align-self: flex-start;
-      border: 1px solid $color-medium-grey;
+      border: 1px solid colors.$medium-grey;
       border-radius: 2px;
       border-right: 0;
       margin-left: 0;
@@ -533,7 +527,7 @@
     min-width: 50px;
 
     & .size {
-      color: $color-medium-grey;
+      color: colors.$medium-grey;
       font-size: 11px;
       font-weight: 500;
       margin-top: 5px;
@@ -551,10 +545,10 @@
 
   & .btn {
     background-color: transparent;
-    border: 2px solid $color-turquoise;
+    border: 2px solid colors.$turquoise;
     border-radius: 4px;
-    color: $color-grey;
-    font-family: "Red Hat Display", sans-serif;
+    color: colors.$grey;
+    font-family: 'Red Hat Display', sans-serif;
     font-size: 14px;
     font-weight: 500;
     padding: 5px 30px;
@@ -562,26 +556,27 @@
     transition: all ease 0.3s;
 
     &:hover {
-      background-color: $color-turquoise;
-      color: $color-white;
+      background-color: colors.$turquoise;
+      color: colors.$white;
     }
   }
 
   & .submit {
-    background-color: $color-black;
-    border-color: $color-black;
-    color: $color-white;
+    background-color: colors.$black;
+    border-color: colors.$black;
+    color: colors.$white;
 
     &:hover {
-      background-color: $color-black;
-      color: $color-white;
+      background-color: colors.$black;
+      color: colors.$white;
     }
   }
+
   & .counter {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $color-grey;
+    color: colors.$grey;
     font-size: 12px;
     font-weight: 500;
     margin-left: 20px;

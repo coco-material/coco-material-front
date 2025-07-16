@@ -1,5 +1,5 @@
 <template src="./CocoFeaturedTags.html" lang="html"></template>
-<style src="./CocoFeaturedTags.scss"  lang="scss" scoped></style>
+<style src="./CocoFeaturedTags.scss" lang="scss" scoped></style>
 
 <script>
 import { defineComponent } from 'vue'
@@ -9,17 +9,17 @@ export default defineComponent({
   name: 'CocoFeaturedTags',
   computed: {
     ...mapState('featured', {
-      featuredVectors: state => state.featuredVectors
-    })
+      featuredVectors: (state) => state.featuredVectors,
+    }),
   },
-  beforeMount () {
+  beforeMount() {
     this.getFeaturedVectors()
   },
   methods: {
     ...mapActions({
-      getFeaturedVectors: 'featured/getFeaturedVectors'
+      getFeaturedVectors: 'featured/getFeaturedVectors',
     }),
-    searchVectorByTags (search, vectorId, ordering) {
+    searchVectorByTags(search, vectorId, ordering) {
       const query = {}
 
       if (search) {
@@ -36,18 +36,18 @@ export default defineComponent({
 
       this.$router.push({ path: '/results', query })
     },
-    getImageAsStyleBackgroundAttr (vector) {
+    getImageAsStyleBackgroundAttr(vector) {
       if (vector.gif !== null || vector.coloredGif !== null) {
         return {
-          backgroundImage: `url('${vector.coloredGif || vector.gif}')`
+          backgroundImage: `url('${vector.coloredGif || vector.gif}')`,
         }
       } else {
         const svg64 = window.btoa(vector.coloredSvgContent || vector.svgContent)
         return {
-          backgroundImage: `url('data:image/svg+xml;base64,${svg64}')`
+          backgroundImage: `url('data:image/svg+xml;base64,${svg64}')`,
         }
       }
-    }
-  }
+    },
+  },
 })
 </script>

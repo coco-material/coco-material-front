@@ -12,9 +12,9 @@ const store = createStore({
     featured,
     tags,
     resources,
-    results
+    results,
   },
-  strict: process.env.DEBUG
+  strict: import.meta.env.DEBUG,
 })
 
 export default store

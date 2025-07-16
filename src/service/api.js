@@ -1,13 +1,15 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = process.env.VUE_APP_API_URL
+axios.defaults.baseURL = import.meta.env.VUE_APP_API_URL
+
+console.log(import.meta.env)
 
 axios.defaults.headers.common['Content-Type'] = 'application/json'
 axios.defaults.headers.common.Accept = 'application/json'
 
 const api = {
   // Vectors
-  getVector (payload) {
+  getVector(payload) {
     const queryUrl = new URLSearchParams()
 
     if (payload.tags && payload.tags.length > 0) {
@@ -19,11 +21,11 @@ const api = {
     if (payload.ordering) {
       queryUrl.set('ordering', payload.ordering)
     }
-    return axios.get(`/vectors/${payload.id}?${queryUrl.toString()}`).then(response => {
+    return axios.get(`/vectors/${payload.id}?${queryUrl.toString()}`).then((response) => {
       return response.data
     })
   },
-  getVectors (payload) {
+  getVectors(payload) {
     const queryUrl = new URLSearchParams()
 
     queryUrl.set('page', `${payload.currentPage}`)
@@ -36,11 +38,11 @@ const api = {
       queryUrl.set('ordering', payload.ordering)
     }
 
-    return axios.get(`/vectors/?${queryUrl.toString()}`).then(response => {
+    return axios.get(`/vectors/?${queryUrl.toString()}`).then((response) => {
       return response.data
     })
   },
-  getSimilarVectors (payload) {
+  getSimilarVectors(payload) {
     const queryUrl = new URLSearchParams()
 
     queryUrl.set('page', `${payload.currentPage}`)
@@ -53,42 +55,42 @@ const api = {
       queryUrl.set('ordering', payload.ordering)
     }
 
-    return axios.get(`/vectors/?${queryUrl.toString()}`).then(response => {
+    return axios.get(`/vectors/?${queryUrl.toString()}`).then((response) => {
       return response.data
     })
   },
-  getFeaturedVectors () {
-    return axios.get('/vectors/featured/').then(response => {
+  getFeaturedVectors() {
+    return axios.get('/vectors/featured/').then((response) => {
       return response.data
     })
   },
-  getLatestVectors () {
-    return axios.get('/vectors/latest/').then(response => {
+  getLatestVectors() {
+    return axios.get('/vectors/latest/').then((response) => {
       return response.data
     })
   },
-  getTotalVectors () {
-    return axios.get('/vectors/total/').then(response => {
+  getTotalVectors() {
+    return axios.get('/vectors/total/').then((response) => {
       return response.data
     })
   },
   // Tags
-  getTags () {
-    return axios.get('/tags/').then(response => {
+  getTags() {
+    return axios.get('/tags/').then((response) => {
       return response.data
     })
   },
   // Sugestion
-  sendSuggestion (form) {
-    return axios.post('/suggestion/', form).then(response => {
+  sendSuggestion(form) {
+    return axios.post('/suggestion/', form).then((response) => {
       return response.data
     })
   },
   // Resources
-  getResources () {
-    return axios.get('/resources/').then(response => {
+  getResources() {
+    return axios.get('/resources/').then((response) => {
       return response.data
     })
-  }
+  },
 }
 export default api

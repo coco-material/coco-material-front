@@ -1,20 +1,25 @@
 <div class="featured-tags-host">
   <h1 class="title">Featured Tags</h1>
   <div class="featured-wrapper" v-if="featuredVectors && featuredVectors.length">
-    <div class="featured-container" v-for="(featured, index) in featuredVectors"  :key="index">
+    <div class="featured-container" v-for="(featured, index) in featuredVectors" :key="index">
       <div class="featured-title">
         <h2>{{ featured.name }}</h2>
         <button class="btn-primary" @click="searchVectorByTags(featured.tag)">View all</button>
       </div>
       <div class="featured-vector-wrappers">
-        <button class="img-container" v-for="(vector, index) in featured.vectors.slice(0, 6)"  :key="index">
+        <button
+          class="img-container"
+          v-for="(vector, index) in featured.vectors.slice(0, 6)"
+          :key="index"
+        >
           <div class="svg-wrapper" @click="searchVectorByTags(vector.tags, vector.id)">
             <div
               class="svg-container"
               :id="index"
               :alt="vector.name"
               @load="loaded(index)"
-              :style="getImageAsStyleBackgroundAttr(vector)"></div>
+              :style="getImageAsStyleBackgroundAttr(vector)"
+            ></div>
           </div>
         </button>
       </div>

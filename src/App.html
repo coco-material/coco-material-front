@@ -2,7 +2,11 @@
   <div id="coco-container">
     <div class="nav">
       <router-link to="/">
-        <img class="logo" alt="CocoMaterial logo. Coconut with a straw inside" src="./assets/logo.svg" />
+        <img
+          class="logo"
+          alt="CocoMaterial logo. Coconut with a straw inside"
+          src="./assets/logo.svg"
+        />
       </router-link>
       <div class="nav-links">
         <span class="link">
@@ -41,7 +45,11 @@
   </div>
   <div :class="`side-nav ${navOpen ? 'open' : ''}`">
     <div class="header">
-      <img class="logo" alt="CocoMaterial logo. Coconut with a straw inside" src="./assets/logo.svg" />
+      <img
+        class="logo"
+        alt="CocoMaterial logo. Coconut with a straw inside"
+        src="./assets/logo.svg"
+      />
       <button @click="openNav" :class="`menu-btn ${navOpen ? 'open' : ''}`">
         <img src="./assets/close2.svg" alt="Close" />
       </button>
@@ -78,11 +86,13 @@
         <img alt="" src="./assets/dot.png" />
       </span>
       <span class="link">
-        <a href="https://paypal.me/cocomaterial" title="Enjoying the site? Support our work!">⭐️ Donate</a>
+        <a href="https://paypal.me/cocomaterial" title="Enjoying the site? Support our work!"
+          >⭐️ Donate</a
+        >
       </span>
     </div>
   </div>
-  <footer :style="{ backgroundImage: 'url(' + require('@/assets/waves.svg') + ')' }">
+  <footer>
     <div class="inner-footer">
       <div class="left-side">
         <img alt="Palm tree illustration" src="./assets/palm-tree.svg" />
@@ -96,10 +106,26 @@
       </div>
       <div class="right-side">
         <ul class="social">
-          <li><a href="https://tree.taiga.io/project/esthermoreno-cocomaterial/kanban" target="blank"><img src="./assets/taiga.svg" alt="Taiga" /></a></li>
-          <li><a href="https://github.com/PIWEEK/coco-material-front" target="blank"><img src="./assets/github.svg" alt="Github" /></a></li>
-          <li><a href="https://twitter.com/cocomaterial" target="blank"><img src="./assets/twitter.svg" alt="Twitter" /></a></li>
-          <li><a href="https://www.instagram.com/cocomaterial/" target="blank"><img src="./assets/instagram.svg" alt="Instagram" /></a></li>
+          <li>
+            <a href="https://tree.taiga.io/project/esthermoreno-cocomaterial/kanban" target="blank"
+              ><img src="./assets/taiga.svg" alt="Taiga"
+            /></a>
+          </li>
+          <li>
+            <a href="https://github.com/PIWEEK/coco-material-front" target="blank"
+              ><img src="./assets/github.svg" alt="Github"
+            /></a>
+          </li>
+          <li>
+            <a href="https://twitter.com/cocomaterial" target="blank"
+              ><img src="./assets/twitter.svg" alt="Twitter"
+            /></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/cocomaterial/" target="blank"
+              ><img src="./assets/instagram.svg" alt="Instagram"
+            /></a>
+          </li>
         </ul>
         <span class="text">Cocomaterial © 2020-present | Made with &lt;3 and open source</span>
       </div>

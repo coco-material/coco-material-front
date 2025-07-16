@@ -1,8 +1,6 @@
-@import '@/variables';
-
 .slide-enter-active,
 .slide-leave-active {
-  transition: height .5s;
+  transition: height 0.5s;
   height: 66px;
   overflow: hidden;
 
@@ -58,20 +56,20 @@
     }
   }
 
-    & .relative {
-      position: relative;
+  & .relative {
+    position: relative;
 
-      @media (max-width: 768px) {
-        margin-bottom: 10px;
-        width: 100%;
-      }
+    @media (max-width: 768px) {
+      margin-bottom: 10px;
+      width: 100%;
     }
+  }
 
   & .search-input-wrapper {
     display: flex;
     align-items: center;
-    background-color: $color-white;
-    border: 1px solid $color-black;
+    background-color: colors.$white;
+    border: 1px solid colors.$black;
     border-radius: 3px;
     box-sizing: border-box;
     height: 32px;
@@ -80,7 +78,7 @@
   }
 
   & .tag {
-    background-color: $color-pink;
+    background-color: colors.$pink;
     font-size: 14px;
     margin-right: 5px;
     padding: 2px 10px;
@@ -104,35 +102,35 @@
   }
 
   & .autocomplete-results {
-    background-color: $color-white;
+    background-color: colors.$white;
     position: absolute;
     top: 32px;
-    border: 1px solid $color-grey;
+    border: 1px solid colors.$grey;
     border-radius: 3px;
     height: 200px;
     overflow-y: scroll;
     width: calc(100% - 12px);
 
     & span {
-      background-color: $color-white;
+      background-color: colors.$white;
       font-weight: 500;
       display: block;
       padding: 10px 25px;
       text-align: left;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
 
       &:hover,
       &:focus {
         outline: none;
-        background-color:$color-turquoise;
-        color: $color-white;
+        background-color: colors.$turquoise;
+        color: colors.$white;
         cursor: pointer;
       }
     }
   }
 
   & .info-text {
-    color: $color-grey;
+    color: colors.$grey;
     font-size: 14px;
     min-width: 200px;
 
@@ -165,8 +163,8 @@
 }
 
 .btn-color {
-  background-color: $color-light-grey;
-  border: 2px solid $color-light-grey;
+  background-color: colors.$light-grey;
+  border: 2px solid colors.$light-grey;
   margin-right: 20px;
 
   & img {
@@ -223,7 +221,7 @@
   }
 
   & .popular-btn {
-    background: $color-light-grey;
+    background: colors.$light-grey;
     border: none;
     border-radius: 15px;
     font-weight: 500;
@@ -236,8 +234,8 @@
     white-space: nowrap;
 
     &:hover {
-      background-color: $color-turquoise-dark;
-      color: $color-white;
+      background-color: colors.$turquoise-dark;
+      color: colors.$white;
     }
   }
 
@@ -245,7 +243,7 @@
     background: transparent;
     border: none;
     display: block;
-    color: $color-turquoise-dark;
+    color: colors.$turquoise-dark;
     font-family: 'Red Hat Display';
     font-size: 14px;
     font-weight: 500;
@@ -292,7 +290,6 @@
   }
 
   @media (max-width: 768px) {
-
     & .tags-list {
       margin: 16px 0 30px;
     }
@@ -317,11 +314,11 @@
   & .download-btn {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: .5rem;
+    column-gap: 0.5rem;
 
     @media (max-width: 400px) {
       grid-template-columns: 1fr;
-      row-gap: .25rem;
+      row-gap: 0.25rem;
     }
 
     @media (max-width: 768px) {
@@ -331,13 +328,13 @@
 
   & .btn {
     background-color: transparent;
-    border: 2px solid $color-turquoise;
+    border: 2px solid colors.$turquoise;
     border-radius: 4px;
     font-family: 'Red Hat Display', sans-serif;
     font-size: 14px;
     line-height: normal;
     padding: 5px;
-    transition: all ease .3s;
+    transition: all ease 0.3s;
     display: block;
 
     @media (max-width: 768px) {
@@ -345,37 +342,37 @@
     }
 
     &:hover {
-      background-color: $color-turquoise;
-      color: $color-white;
+      background-color: colors.$turquoise;
+      color: colors.$white;
     }
   }
 
   & .svg {
-    background-color: $color-light-turquoise;
-    color: $color-black;
+    background-color: colors.$light-turquoise;
+    color: colors.$black;
     display: inline-block;
     text-decoration: none;
     text-align: center;
 
     &:hover {
-      background-color: $color-turquoise;
-      color: $color-white;
+      background-color: colors.$turquoise;
+      color: colors.$white;
     }
   }
 
   & .img-container {
-    background: $color-white;
+    background: colors.$white;
     cursor: pointer;
-    border: 1px solid $color-light-grey;
+    border: 1px solid colors.$light-grey;
     display: flex;
     height: 180px;
     margin-bottom: 10px;
     padding: 8% 16%;
-    transition: all ease .3s;
+    transition: all ease 0.3s;
     width: 100%;
 
     &:hover {
-      border-color: $color-medium-grey;
+      border-color: colors.$medium-grey;
     }
   }
 
@@ -387,7 +384,8 @@
     width: 100%;
   }
 
-  & img, .svg-container {
+  & img,
+  .svg-container {
     margin: auto;
 
     &.vertical {
@@ -419,10 +417,10 @@
   }
 
   & p {
-    color: $color-grey;
+    color: colors.$grey;
     font-size: 16px;
     font-weight: 500;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   & strong {
@@ -430,7 +428,7 @@
   }
 
   & a {
-    color: $color-turquoise;
+    color: colors.$turquoise;
     text-decoration: none;
     font-weight: 700;
 
@@ -441,10 +439,11 @@
   }
 
   & .highlight {
-    color: $color-turquoise;
+    color: colors.$turquoise;
     font-weight: 700;
   }
 }
+
 .suggestion {
   max-width: 660px;
   display: flex;
@@ -458,7 +457,6 @@
   }
 }
 
-
 .pagination-container {
   display: flex;
   justify-content: center;
@@ -470,17 +468,17 @@
   }
 
   & .page {
-    color: $color-turquoise;
+    color: colors.$turquoise;
     font-weight: 700;
     margin-right: 10px;
 
     &.current {
-      color: $color-black;
+      color: colors.$black;
     }
   }
 
   & .separator {
-    color: $color-medium-grey;
+    color: colors.$medium-grey;
     font-weight: 500;
     margin-right: 10px;
   }
@@ -494,7 +492,7 @@
 }
 
 .nav-search {
-  background: linear-gradient(180deg, $color-light-blue -7.61%, $color-light-turquoise 87.82%);
+  background: linear-gradient(180deg, colors.$light-blue -7.61%, colors.$light-turquoise 87.82%);
   position: fixed;
   top: 0;
   width: 100%;

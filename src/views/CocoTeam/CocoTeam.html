@@ -1,17 +1,29 @@
 <div class="team">
   <h3 class="title">The team</h3>
   <div class="bg">
-    <p><strong>CocoMaterial</strong> is an idea of Esther Moreno for <a href="https://kaleidos.net/" target="_blank" class="link">Kaleidos’</a> <a class="link" href="https://piweek.com/" target="_blank">PIWEEK </a>.</p>
+    <p>
+      <strong>CocoMaterial</strong> is an idea of Esther Moreno for
+      <a href="https://kaleidos.net/" target="_blank" class="link">Kaleidos’</a>
+      <a class="link" href="https://piweek.com/" target="_blank">PIWEEK </a>.
+    </p>
     <p>The team members are:</p>
     <div class="members">
       <img alt="Team members illustration" src="../../assets/team.svg" />
     </div>
   </div>
   <div class="group">
-    <a :href="member.link" target="_blank" class="person" v-for="(member, index) in members" :key="index">
+    <a
+      :href="member.link"
+      target="_blank"
+      class="person"
+      v-for="(member, index) in members"
+      :key="index"
+    >
       <p class="name">{{member.name}}</p>
       <p class="position">{{member.position}}</p>
     </a>
   </div>
-  <p class="contact">Feel free to <a class="highlight" href="mailto:soyesthermoreno@gmail.com">contact us</a></p>
+  <p class="contact">
+    Feel free to <a class="highlight" href="mailto:soyesthermoreno@gmail.com">contact us</a>
+  </p>
 </div>

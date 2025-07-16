@@ -1,221 +1,330 @@
 <transition name="modal-fade">
-  <focus-trap v-model:active="isActive" :initial-focus="() => $refs.title"  v-if="vector">
+  <focus-trap v-model:active="isActive" :initial-focus="() => $refs.title" v-if="vector">
     <div class="modal-backdrop">
       <div class="modal" v-if="vector">
-      <header class="modal-header">
-        <div class="title-container">
-          <div class="title" v-if="!customizeBulk && vector.name" ref="title" tabindex="1" >
-            {{ vector.name }}
-          </div>
-          <ul class="tags-list">
-            <li v-if="customizeBulk" v-for="(tag, index) in tags" :key="index">
-              <button tabindex="1" class="popular-btn" @click="searchVector(tag)">{{tag}}</button>
-            </li>
-            <li v-if="!customizeBulk" v-for="(tag, index) in vectorTags" :key="index">
-              <button class="popular-btn" tabindex="1" @click="searchVector(tag)">{{tag}}</button>
-            </li>
-          </ul>
-        </div>
-        <button
-          tabindex="1"
-          type="button"
-          class="btn-close"
-          @click="close">
-          X
-        </button>
-      </header>
-      <section class="modal-body">
-        <slot name="body">
-          <div class="previous" v-if="!customizeBulk">
-            <button
-              tabindex="1"
-              class="btn-previous" type="button"
-              :disabled="!vector.neighbors.previous"
-              @click="goToVector(vector.neighbors.previous.id)">
-              &lt;
-            </button>
-          </div>
-
-          <div class="main">
-            <div class="preview-container">
-
-              <div
-                v-if="downloadType != 'gif'"
-                :class="`preview svg ${isHorizontal ? 'horizontal' : 'vertical'}`"
-                id="preview"
-                ref="preview"
-                v-html="svgCode">
-              </div>
-              <div
-                v-else
-                :class="`preview gif ${isHorizontal ? 'horizontal' : 'vertical'}`"
-                id="preview"
-                ref="preview">
-                <img class="gif-image" :src="selectedGifUrl" />
-              </div>
-              <span class="preview-title" v-if="customizeBulk">Example illustation for reference</span>
+        <header class="modal-header">
+          <div class="title-container">
+            <div class="title" v-if="!customizeBulk && vector.name" ref="title" tabindex="1">
+              {{ vector.name }}
             </div>
-            <form
-              class="form-container"
-              @submit.prevent="download()">
-              <div class="types-container">
-                <legend class="legend">Format</legend>
-                <div class="choices-container">
+            <ul class="tags-list">
+              <li v-if="customizeBulk" v-for="(tag, index) in tags" :key="index">
+                <button tabindex="1" class="popular-btn" @click="searchVector(tag)">{{tag}}</button>
+              </li>
+              <li v-if="!customizeBulk" v-for="(tag, index) in vectorTags" :key="index">
+                <button class="popular-btn" tabindex="1" @click="searchVector(tag)">{{tag}}</button>
+              </li>
+            </ul>
+          </div>
+          <button tabindex="1" type="button" class="btn-close" @click="close">X</button>
+        </header>
+        <section class="modal-body">
+          <slot name="body">
+            <div class="previous" v-if="!customizeBulk">
+              <button
+                tabindex="1"
+                class="btn-previous"
+                type="button"
+                :disabled="!vector.neighbors.previous"
+                @click="goToVector(vector.neighbors.previous.id)"
+              >
+                &lt;
+              </button>
+            </div>
+
+            <div class="main">
+              <div class="preview-container">
+                <div
+                  v-if="downloadType != 'gif'"
+                  :class="`preview svg ${isHorizontal ? 'horizontal' : 'vertical'}`"
+                  id="preview"
+                  ref="preview"
+                  v-html="svgCode"
+                ></div>
+                <div
+                  v-else
+                  :class="`preview gif ${isHorizontal ? 'horizontal' : 'vertical'}`"
+                  id="preview"
+                  ref="preview"
+                >
+                  <img class="gif-image" :src="selectedGifUrl" />
+                </div>
+                <span class="preview-title" v-if="customizeBulk"
+                  >Example illustation for reference</span
+                >
+              </div>
+              <form class="form-container" @submit.prevent="download()">
+                <div class="types-container">
+                  <legend class="legend">Format</legend>
+                  <div class="choices-container">
                     <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="downloadType" type="radio" id="type-png" value="png" v-model="downloadType" :disabled="disableTypePng" />
+                      <input
+                        tabindex="1"
+                        @focus="preventKeys = true"
+                        @blur="preventKeys = false"
+                        name="downloadType"
+                        type="radio"
+                        id="type-png"
+                        value="png"
+                        v-model="downloadType"
+                        :disabled="disableTypePng"
+                      />
                       <label for="type-png" @click="selectDownloadTypePng()">PNG</label>
                     </div>
                     <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="downloadType" type="radio" id="type-svg" value="svg" v-model="downloadType" :disabled="disableTypeSvg" />
+                      <input
+                        tabindex="1"
+                        @focus="preventKeys = true"
+                        @blur="preventKeys = false"
+                        name="downloadType"
+                        type="radio"
+                        id="type-svg"
+                        value="svg"
+                        v-model="downloadType"
+                        :disabled="disableTypeSvg"
+                      />
                       <label for="type-svg" @click="selectDownloadTypeSvg()">SVG</label>
                     </div>
                     <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="downloadType" type="radio" id="type-gif" value="gif" v-model="downloadType"  :disabled="disableTypeGif"/>
+                      <input
+                        tabindex="1"
+                        @focus="preventKeys = true"
+                        @blur="preventKeys = false"
+                        name="downloadType"
+                        type="radio"
+                        id="type-gif"
+                        value="gif"
+                        v-model="downloadType"
+                        :disabled="disableTypeGif"
+                      />
                       <label for="type-gif" @click="selectDownloadTypeGif()">GIF</label>
                     </div>
-                </div>
-              </div>
-              <fieldset class="colors-container">
-                <legend class="legend">Color</legend>
-                <div class="choices-container">
-                    <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="colorOption" type="radio" id="color-black-white" value="black-white" v-model="colorOption" :disabled="disableColorBW"/>
-                      <label for="color-black-white" @click="selectColorBlackAndWhite()">Black & White</label>
-                    </div>
-                    <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="colorOption" type="radio" id="color-suggestion" value="color-suggestion" v-model="colorOption" :disabled="disableColorSuggestion" />
-                      <label for="color-suggestion" @click="selectColorSuggestion()">Color Suggestion</label>
-                    </div>
-                    <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="colorOption" type="radio" id="color-edit" value="edit" v-model="colorOption" :disabled="disableColorEdit"/>
-                      <label for="color-edit" @click="selectColorEdit()">Edit</label>
-                    </div>
-                </div>
-                <transition name="fade" mode="out-in">
-                  <div class="edit-color-settings-container" v-if="colorOption == 'edit'">
-                    <div class="stroke-container">
-                      <label class="title" for="strokeHex"> Stroke </label>
-                      <div class="color-options">
-                        <div class="rounds">
-                          <span
-                            tabindex="1"
-                            :class="`round ${strokeHexValue === color ? 'selected' : ''}`"
-                            v-for="(color, index) in strokeColor"
-                            :key="index"
-                            v-on:keyup.enter="selectStroke(color)"
-                            @click="selectStroke(color)"
-                            :style="{backgroundColor: `${color}`}">
-                          </span>
-                        </div>
-                        <div class="color-title-container">
-                          <label class="title" for="strokeHex"> Stroke </label>
-                          <div class="color-hex-container">
-                            <input
-                              tabindex="1"
-                              class="hex"
-                              type="text"
-                              name="strokeHex"
-                              placeholder="HEX"
-                              v-model="strokeHexValue"
-                              @keyup="selectStroke(strokeHexValue)" />
-                            <color-input
-                              format="hex string"
-                              position="bottom left"
-                              disable-alpha
-                              disable-text-inputs
-                              v-model="strokeHexValue"
-                              @change="selectStroke(strokeHexValue)" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fill-container">
-                      <label class="title" for="fillHex">Fill</label>
-                      <div class="color-options">
-                        <div class="rounds">
-                          <span
-                            :class="`round ${color === 'none' ? 'transparent' : ''} ${fillHexValue === color ? 'selected' : ''}`"
-                            v-for="(color, index) in fillColor"
-                            :key="index"
-                            @click="selectFill(color)"
-                            :style="{backgroundColor: `${color}`}">
-                          </span>
-                        </div>
-                        <div class="color-title-container">
-                          <label class="title" for="fillHex">Fill</label>
-                          <div class="color-hex-container">
-                            <input
-                              class="hex"
-                              type="text"
-                              name="fillHex"
-                              placeholder="HEX"
-                              v-model="fillHexValue"
-                              @keyup="selectFill(fillHexValue)" />
-                          <color-input
-                            format="hex string"
-                            position="bottom left"
-                            disable-alpha
-                            disable-text-inputs
-                            v-model="fillHexValue"
-                            @change="selectFill(fillHexValue)" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
-                </transition>
-              </fieldset>
-
-              <transition name="fade" mode="out-in">
-               <fieldset class="sizes-container">
-                  <legend class="legend">Size</legend>
+                </div>
+                <fieldset class="colors-container">
+                  <legend class="legend">Color</legend>
                   <div class="choices-container">
                     <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="size"  type="radio" id="size-original" value="0" v-model="size" />
-                      <label for="size-original">Original size</label>
-                      <div class="size">If you want to combine it with similar images</div>
+                      <input
+                        tabindex="1"
+                        @focus="preventKeys = true"
+                        @blur="preventKeys = false"
+                        name="colorOption"
+                        type="radio"
+                        id="color-black-white"
+                        value="black-white"
+                        v-model="colorOption"
+                        :disabled="disableColorBW"
+                      />
+                      <label for="color-black-white" @click="selectColorBlackAndWhite()"
+                        >Black & White</label
+                      >
                     </div>
                     <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="size" type="radio" id="size-s" value="128" v-model="size" :disabled="disableSizeChoices" />
-                      <label for="size-s">S</label>
-                      <div class="size">128px</div>
+                      <input
+                        tabindex="1"
+                        @focus="preventKeys = true"
+                        @blur="preventKeys = false"
+                        name="colorOption"
+                        type="radio"
+                        id="color-suggestion"
+                        value="color-suggestion"
+                        v-model="colorOption"
+                        :disabled="disableColorSuggestion"
+                      />
+                      <label for="color-suggestion" @click="selectColorSuggestion()"
+                        >Color Suggestion</label
+                      >
                     </div>
                     <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="size" type="radio" id="size-m" value="256" v-model="size" :disabled="disableSizeChoices" />
-                      <label for="size-m">M</label>
-                      <div class="size">256px</div>
-                    </div>
-                    <div class="choice-container">
-                      <input tabindex="1" @focus="preventKeys = true" @blur="preventKeys = false" name="size" type="radio" id="size-l" value="512" v-model="size" :disabled="disableSizeChoices" />
-                      <label for="size-l">L</label>
-                      <div class="size">512px</div>
+                      <input
+                        tabindex="1"
+                        @focus="preventKeys = true"
+                        @blur="preventKeys = false"
+                        name="colorOption"
+                        type="radio"
+                        id="color-edit"
+                        value="edit"
+                        v-model="colorOption"
+                        :disabled="disableColorEdit"
+                      />
+                      <label for="color-edit" @click="selectColorEdit()">Edit</label>
                     </div>
                   </div>
+                  <transition name="fade" mode="out-in">
+                    <div class="edit-color-settings-container" v-if="colorOption == 'edit'">
+                      <div class="stroke-container">
+                        <label class="title" for="strokeHex"> Stroke </label>
+                        <div class="color-options">
+                          <div class="rounds">
+                            <span
+                              tabindex="1"
+                              :class="`round ${strokeHexValue === color ? 'selected' : ''}`"
+                              v-for="(color, index) in strokeColor"
+                              :key="index"
+                              v-on:keyup.enter="selectStroke(color)"
+                              @click="selectStroke(color)"
+                              :style="{backgroundColor: `${color}`}"
+                            >
+                            </span>
+                          </div>
+                          <div class="color-title-container">
+                            <label class="title" for="strokeHex"> Stroke </label>
+                            <div class="color-hex-container">
+                              <input
+                                tabindex="1"
+                                class="hex"
+                                type="text"
+                                name="strokeHex"
+                                placeholder="HEX"
+                                v-model="strokeHexValue"
+                                @keyup="selectStroke(strokeHexValue)"
+                              />
+                              <color-input
+                                format="hex string"
+                                position="bottom left"
+                                disable-alpha
+                                disable-text-inputs
+                                v-model="strokeHexValue"
+                                @change="selectStroke(strokeHexValue)"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="fill-container">
+                        <label class="title" for="fillHex">Fill</label>
+                        <div class="color-options">
+                          <div class="rounds">
+                            <span
+                              :class="`round ${color === 'none' ? 'transparent' : ''} ${fillHexValue === color ? 'selected' : ''}`"
+                              v-for="(color, index) in fillColor"
+                              :key="index"
+                              @click="selectFill(color)"
+                              :style="{backgroundColor: `${color}`}"
+                            >
+                            </span>
+                          </div>
+                          <div class="color-title-container">
+                            <label class="title" for="fillHex">Fill</label>
+                            <div class="color-hex-container">
+                              <input
+                                class="hex"
+                                type="text"
+                                name="fillHex"
+                                placeholder="HEX"
+                                v-model="fillHexValue"
+                                @keyup="selectFill(fillHexValue)"
+                              />
+                              <color-input
+                                format="hex string"
+                                position="bottom left"
+                                disable-alpha
+                                disable-text-inputs
+                                v-model="fillHexValue"
+                                @change="selectFill(fillHexValue)"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </transition>
                 </fieldset>
-              </transition>
 
-              <fieldset class="actions-container">
-                <button tabindex="1" class="btn submit" type="submit">
-                  Download {{ downloadType.toUpperCase() }}
-                </button>
-                <div class="counter" v-if="customizeBulk">{{totalVectors}} illustrations zipped</div>
-              </fieldset>
-            </form>
-          </div>
+                <transition name="fade" mode="out-in">
+                  <fieldset class="sizes-container">
+                    <legend class="legend">Size</legend>
+                    <div class="choices-container">
+                      <div class="choice-container">
+                        <input
+                          tabindex="1"
+                          @focus="preventKeys = true"
+                          @blur="preventKeys = false"
+                          name="size"
+                          type="radio"
+                          id="size-original"
+                          value="0"
+                          v-model="size"
+                        />
+                        <label for="size-original">Original size</label>
+                        <div class="size">If you want to combine it with similar images</div>
+                      </div>
+                      <div class="choice-container">
+                        <input
+                          tabindex="1"
+                          @focus="preventKeys = true"
+                          @blur="preventKeys = false"
+                          name="size"
+                          type="radio"
+                          id="size-s"
+                          value="128"
+                          v-model="size"
+                          :disabled="disableSizeChoices"
+                        />
+                        <label for="size-s">S</label>
+                        <div class="size">128px</div>
+                      </div>
+                      <div class="choice-container">
+                        <input
+                          tabindex="1"
+                          @focus="preventKeys = true"
+                          @blur="preventKeys = false"
+                          name="size"
+                          type="radio"
+                          id="size-m"
+                          value="256"
+                          v-model="size"
+                          :disabled="disableSizeChoices"
+                        />
+                        <label for="size-m">M</label>
+                        <div class="size">256px</div>
+                      </div>
+                      <div class="choice-container">
+                        <input
+                          tabindex="1"
+                          @focus="preventKeys = true"
+                          @blur="preventKeys = false"
+                          name="size"
+                          type="radio"
+                          id="size-l"
+                          value="512"
+                          v-model="size"
+                          :disabled="disableSizeChoices"
+                        />
+                        <label for="size-l">L</label>
+                        <div class="size">512px</div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </transition>
 
-          <div class="next" v-if="!customizeBulk">
-            <button
-              tabindex="1"
-              class="btn-next" type="button"
-              :disabled="!vector.neighbors.next"
-              @click="goToVector(vector.neighbors.next.id)">
-              &gt;
-            </button>
-          </div>
-        </slot>
-      </section>
-      <footer></footer>
-    </div>
+                <fieldset class="actions-container">
+                  <button tabindex="1" class="btn submit" type="submit">
+                    Download {{ downloadType.toUpperCase() }}
+                  </button>
+                  <div class="counter" v-if="customizeBulk">
+                    {{totalVectors}} illustrations zipped
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+
+            <div class="next" v-if="!customizeBulk">
+              <button
+                tabindex="1"
+                class="btn-next"
+                type="button"
+                :disabled="!vector.neighbors.next"
+                @click="goToVector(vector.neighbors.next.id)"
+              >
+                &gt;
+              </button>
+            </div>
+          </slot>
+        </section>
+        <footer></footer>
+      </div>
     </div>
   </focus-trap>
 </transition>

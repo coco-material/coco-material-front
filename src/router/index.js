@@ -5,7 +5,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: CocoHome
+    component: CocoHome,
   },
   {
     path: '/team',
@@ -13,7 +13,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/CocoTeam/CocoTeam.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/CocoTeam/CocoTeam.vue'),
   },
   {
     path: '/license',
@@ -21,7 +21,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/CocoLicense/CocoLicense.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/CocoLicense/CocoLicense.vue'),
   },
   {
     path: '/results',
@@ -29,24 +29,24 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/CocoResults/CocoResults.vue')
-  }
+    component: () => import(/* webpackChunkName: "about" */ '../views/CocoResults/CocoResults.vue'),
+  },
 ]
 
 const router = createRouter({
   routes,
-  history: createWebHistory(process.env.BASE_URL),
-  scrollBehavior (to, from, savedPosition) {
+  history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth'
+        behavior: 'smooth',
       }
     } else if (savedPosition) {
       return savedPosition
     }
     return { top: 0 }
-  }
+  },
 })
 
 export default router

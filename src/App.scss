@@ -2,7 +2,6 @@
  * COMMON CSS
  **********************************/
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&display=swap');
-@import '@/variables';
 
 html,
 body {
@@ -15,7 +14,7 @@ body {
 }
 
 :focus {
-  outline: solid 1px $color-red;
+  outline: solid 1px colors.$red;
 }
 
 .preview {
@@ -43,26 +42,27 @@ body {
     }
   }
 }
+
 .btn-primary {
-  background-color: $color-white;
-  border: 2px solid $color-turquoise;
+  background-color: colors.$white;
+  border: 2px solid colors.$turquoise;
   border-radius: 4px;
   color: #222;
   font-family: 'Red Hat Display', sans-serif;
   font-size: 14px;
   font-weight: 500;
   padding: 5px;
-  transition: all ease .3s;
+  transition: all ease 0.3s;
 
   &:hover {
-    background-color: $color-turquoise;
-    color: $color-white;
+    background-color: colors.$turquoise;
+    color: colors.$white;
   }
 }
 
 .scroll-to-top {
   align-items: center;
-  background: #7BDFF2;
+  background: #7bdff2;
   border: 0;
   border-radius: 100%;
   bottom: 1.5rem;
@@ -89,10 +89,11 @@ body {
 
 .color-input.user {
   .box {
-    border: 1px solid $color-medium-grey;
-    border-radius: 0px  2px 2px 0px;
+    border: 1px solid colors.$medium-grey;
+    border-radius: 0px 2px 2px 0px;
   }
 }
+
 .color-input.user .box.active .inner {
   transform: none;
 }
@@ -103,12 +104,12 @@ body {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .5s
+  transition: opacity 0.5s;
 }
 
 .fade-enter,
 .fade-leave-to {
-  opacity: 0
+  opacity: 0;
 }
 
 /**********************************
@@ -119,7 +120,7 @@ body {
   font-family: 'Red Hat Display', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $color-black;
+  color: colors.$black;
   font-weight: 400;
   display: flex;
   flex-direction: column;
@@ -175,7 +176,7 @@ button:hover {
   margin: auto 0;
 
   & a {
-    color: $color-grey;
+    color: colors.$grey;
     font-size: 14px;
     font-weight: 700;
     margin: 0 15px;
@@ -183,7 +184,7 @@ button:hover {
     text-transform: uppercase;
 
     &:hover {
-      color: $color-turquoise;
+      color: colors.$turquoise;
     }
   }
 }
@@ -202,7 +203,7 @@ button:hover {
   z-index: 2;
   top: 0;
   right: 0;
-  background-color: $color-white;
+  background-color: colors.$white;
   overflow-x: hidden;
   transition: 0.5s;
 
@@ -234,14 +235,16 @@ button:hover {
 }
 
 footer {
+  background-image: url('@/assets/waves.svg');
   background-size: cover;
   background-repeat: no-repeat;
+
   & .inner-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     padding: 30px 60px;
-    margin:0 auto;
+    margin: 0 auto;
     max-width: 1440px;
 
     @media (max-width: 768px) {
@@ -280,7 +283,7 @@ footer {
       }
 
       & a {
-        color: $color-black;
+        color: colors.$black;
         font-size: 14px;
         font-weight: 700;
         margin-top: 15px;
@@ -304,10 +307,9 @@ footer {
     }
 
     & .text {
-      color: $color-black;
+      color: colors.$black;
       font-size: 14px;
       font-weight: 500;
     }
   }
 }
-

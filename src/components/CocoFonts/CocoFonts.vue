@@ -1,5 +1,5 @@
 <template src="./CocoFonts.html" lang="html"></template>
-<style src="./CocoFonts.scss"  lang="scss" scoped></style>
+<style src="./CocoFonts.scss" lang="scss" scoped></style>
 
 <script>
 import { defineComponent } from 'vue'
@@ -9,17 +9,17 @@ export default defineComponent({
   name: 'CocoFonts',
   computed: {
     ...mapState('resources', {
-      lettersFont: state => state.lettersFont,
-      iconsFont: state => state.iconsFont
-    })
+      lettersFont: (state) => state.lettersFont,
+      iconsFont: (state) => state.iconsFont,
+    }),
   },
-  beforeMount () {
+  beforeMount() {
     this.getResources()
   },
   methods: {
     ...mapActions({
-      getResources: 'resources/getResources'
-    })
-  }
+      getResources: 'resources/getResources',
+    }),
+  },
 })
 </script>

@@ -1,15 +1,15 @@
 import { createApp } from 'vue'
-import './registerServiceWorker'
+
+import mitt from 'mitt'
 
 import VueMatomo from 'vue-matomo'
 import VueScrollTo from 'vue-scrollto'
 import ColorInput from 'vue-color-input'
-import mitt from 'mitt'
-
-import App from './App.vue'
-import router from './router'
-import store from './store'
 import { FocusTrap } from 'focus-trap-vue'
+
+import App from '@/App.vue'
+import router from '@/router'
+import store from '@/store'
 
 const emitter = mitt()
 
@@ -18,16 +18,16 @@ const mainApp = createApp(App)
   .use(store)
   .use(router)
   .use(VueMatomo, {
-    host: process.env.VUE_APP_MATOMO_HOST,
-    siteId: process.env.VUE_APP_MATOMO_SITE_ID,
+    host: import.meta.env.VUE_APP_MATOMO_HOST,
+    siteId: import.meta.env.VUE_APP_MATOMO_SITE_ID,
     disableCookies: true,
     enableHeartBeatTimer: true,
     heartBeatTimerInterval: 10,
-    router
+    router,
   })
   .use(VueScrollTo, {
     duration: 500,
-    easing: 'ease'
+    easing: 'ease',
   })
   .use(ColorInput)
 

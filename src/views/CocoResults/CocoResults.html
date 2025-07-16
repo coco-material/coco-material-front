@@ -3,8 +3,18 @@
     <div v-if="showNavBar" class="nav-search">
       <div class="container">
         <router-link to="/">
-          <img v-if="!mobileView" class="logo" alt="CocoMaterial logo. Coconut with a straw inside" src="../../assets/logo.svg">
-          <img v-else class="logo" alt="CocoMaterial logo. Coconut with a straw inside" src="../../assets/logo-mobile.svg">
+          <img
+            v-if="!mobileView"
+            class="logo"
+            alt="CocoMaterial logo. Coconut with a straw inside"
+            src="../../assets/logo.svg"
+          />
+          <img
+            v-else
+            class="logo"
+            alt="CocoMaterial logo. Coconut with a straw inside"
+            src="../../assets/logo-mobile.svg"
+          />
         </router-link>
         <form autocomplete="off" class="search" onsubmit="return false;">
           <label for="search">Search results for: </label>
@@ -13,7 +23,10 @@
               <span
                 class="tag"
                 v-for="(tag, index) in searchTags"
-                :key="index" @click="removeTag(tag)">x {{tag}}</span>
+                :key="index"
+                @click="removeTag(tag)"
+                >x {{tag}}</span
+              >
               <input
                 id="search"
                 ref="search"
@@ -24,12 +37,25 @@
                 @keyup="autocompleteSearch"
                 @keyup.esc="resetAutocompleteResults()"
                 @keydown.down="focusAutocompleteResults(-1, 'down')"
-                :placeholder="`${searchTags.length ? '' : 'write a topic (in English)'}`" />
+                :placeholder="`${searchTags.length ? '' : 'write a topic (in English)'}`"
+              />
             </div>
-            <div id="results" ref="results" v-if="autocompleteResults.length" class="autocomplete-results">
-              <span tabindex="1" v-for="(result, index) in autocompleteResults" :key="index" @click="addTag(result.slug)"
-                @keyup.enter="addTag(result.slug)" @keyup.esc="resetAutocompleteResults()"
-                @keydown.up="focusAutocompleteResults(index, 'up')" @keydown.down="focusAutocompleteResults(index, 'down')">
+            <div
+              id="results"
+              ref="results"
+              v-if="autocompleteResults.length"
+              class="autocomplete-results"
+            >
+              <span
+                tabindex="1"
+                v-for="(result, index) in autocompleteResults"
+                :key="index"
+                @click="addTag(result.slug)"
+                @keyup.enter="addTag(result.slug)"
+                @keyup.esc="resetAutocompleteResults()"
+                @keydown.up="focusAutocompleteResults(index, 'up')"
+                @keydown.down="focusAutocompleteResults(index, 'down')"
+              >
                 {{result.slug}}
               </span>
             </div>
@@ -43,21 +69,99 @@
       <p>Popular tags</p>
       <button class="link mobile" @click="showAll()">View all images</button>
       <ul class="tags-list">
-        <li><button class="popular-btn" :disabled="searchTags.includes('face')" @click="handleSearchVector('face')">face</button></li>
-        <li><button class="popular-btn" :disabled="searchTags.includes('family')" @click="handleSearchVector('family')">family</button></li>
-        <li><button class="popular-btn" :disabled="searchTags.includes('science')" @click="handleSearchVector('science')">science</button></li>
-        <li><button class="popular-btn" :disabled="searchTags.includes('office')" @click="handleSearchVector('office')">office</button></li>
-        <li><button class="popular-btn" :disabled="searchTags.includes('tools')" @click="handleSearchVector('tools')">tools</button></li>
-        <li><button class="popular-btn" :disabled="searchTags.includes('agile')" @click="handleSearchVector('agile')">agile</button></li>
-        <li><button class="popular-btn" :disabled="searchTags.includes('code')" @click="handleSearchVector('code')">code</button></li>
-        <li><button class="popular-btn" :disabled="searchTags.includes('chart')" @click="handleSearchVector('chart')">chart</button></li>
-        <li><button class="popular-btn" :disabled="searchTags.includes('logo')" @click="handleSearchVector('logo')">logo</button></li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('face')"
+            @click="handleSearchVector('face')"
+          >
+            face
+          </button>
+        </li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('family')"
+            @click="handleSearchVector('family')"
+          >
+            family
+          </button>
+        </li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('science')"
+            @click="handleSearchVector('science')"
+          >
+            science
+          </button>
+        </li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('office')"
+            @click="handleSearchVector('office')"
+          >
+            office
+          </button>
+        </li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('tools')"
+            @click="handleSearchVector('tools')"
+          >
+            tools
+          </button>
+        </li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('agile')"
+            @click="handleSearchVector('agile')"
+          >
+            agile
+          </button>
+        </li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('code')"
+            @click="handleSearchVector('code')"
+          >
+            code
+          </button>
+        </li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('chart')"
+            @click="handleSearchVector('chart')"
+          >
+            chart
+          </button>
+        </li>
+        <li>
+          <button
+            class="popular-btn"
+            :disabled="searchTags.includes('logo')"
+            @click="handleSearchVector('logo')"
+          >
+            logo
+          </button>
+        </li>
       </ul>
       <button class="link desktop" @click="showAll()">View all images</button>
     </aside>
-    <section class="results-data"  @click="closeAutocomplete">
+    <section class="results-data" @click="closeAutocomplete">
       <div class="menu">
-        <form v-show="!showNavBar" id="formSearch" autocomplete="off" class="search" onsubmit="return false;">
+        <form
+          v-show="!showNavBar"
+          id="formSearch"
+          autocomplete="off"
+          class="search"
+          onsubmit="return false;"
+        >
           <label for="search">Search results for: </label>
           <div class="relative">
             <div class="search-input-wrapper">
@@ -65,7 +169,9 @@
                 class="tag"
                 v-for="(tag, index) in searchTags"
                 :key="index"
-                @click="removeTag(tag)">x {{tag}}</span>
+                @click="removeTag(tag)"
+                >x {{tag}}</span
+              >
               <input
                 id="search"
                 ref="search"
@@ -76,9 +182,15 @@
                 @keyup.delete="handleDelete"
                 @keyup="autocompleteSearch"
                 @keyup.esc="resetAutocompleteResults()"
-                @keydown.down="focusAutocompleteResults(-1, 'down')" />
+                @keydown.down="focusAutocompleteResults(-1, 'down')"
+              />
             </div>
-            <div id="results" ref="results" v-if="autocompleteResults.length" class="autocomplete-results">
+            <div
+              id="results"
+              ref="results"
+              v-if="autocompleteResults.length"
+              class="autocomplete-results"
+            >
               <span
                 tabindex="1"
                 v-for="(result, index) in autocompleteResults"
@@ -87,22 +199,26 @@
                 @keyup.enter="addTag(result.slug)"
                 @keyup.esc="resetAutocompleteResults()"
                 @keydown.up="focusAutocompleteResults(index, 'up')"
-                @keydown.down="focusAutocompleteResults(index, 'down')">
+                @keydown.down="focusAutocompleteResults(index, 'down')"
+              >
                 {{result.slug}}
               </span>
             </div>
           </div>
-          <span v-if="filteredVectors.length" class="info-text">Showing {{totalResults}} results</span >
+          <span v-if="filteredVectors.length" class="info-text"
+            >Showing {{totalResults}} results</span
+          >
         </form>
-        <div v-if="!isShowingSimilarVectors && filteredVectors.length"
-             class="vectors-actions" @click="closeAutocomplete">
+        <div
+          v-if="!isShowingSimilarVectors && filteredVectors.length"
+          class="vectors-actions"
+          @click="closeAutocomplete"
+        >
           <button class="btn-color" @click="showModal(filteredVectors[0], true, 0)">
-            <img alt="Palette icon" src="../../assets/palette.svg"/>
+            <img alt="Palette icon" src="../../assets/palette.svg" />
             <span>Customize all</span>
           </button>
-          <button class="btn-primary btn-download" @click="downloadAll">
-            Download all
-          </button>
+          <button class="btn-primary btn-download" @click="downloadAll">Download all</button>
         </div>
       </div>
 
@@ -113,21 +229,23 @@
         <div class="text-container">
           <h3>Sorry, we couldn't find anything you're looking for</h3>
           <p v-if="searchTags.length">
-            We didn't find any result matching "<span class="highlight">{{ searchTags.join(' ') }}</span>".
+            We didn't find any result matching "<span class="highlight"
+              >{{ searchTags.join(' ') }}</span
+            >".
           </p>
           <p v-if="searchTags.length && filteredVectors.length">
-            Meanwhile, we are going to offer you some drawings that may or may not be related to your search
-            and may or may not interest you.
+            Meanwhile, we are going to offer you some drawings that may or may not be related to
+            your search and may or may not interest you.
           </p>
           <p>
-            Please check what you have written, try a different search term, look within our <strong>popular
-            tags</strong> or if you are missing something,
+            Please check what you have written, try a different search term, look within our
+            <strong>popular tags</strong> or if you are missing something,
             <router-link to="/#suggestion">send us your ideas</router-link>.
           </p>
         </div>
       </div>
 
-      <div v-if="filteredVectors.length" class="results-list"  @click="closeAutocomplete">
+      <div v-if="filteredVectors.length" class="results-list" @click="closeAutocomplete">
         <div class="vector-container" v-for="(vector, index) in filteredVectors" :key="index">
           <button class="img-container" @click="showModal(vector, false, index)">
             <div
@@ -135,7 +253,8 @@
               :id="index"
               :alt="vector.name"
               @load="loaded(index)"
-              :style="getImageAsStyleBackgroundAttr(vector)"></div>
+              :style="getImageAsStyleBackgroundAttr(vector)"
+            ></div>
           </button>
           <div class="download-btn">
             <button class="btn svg" @click="download(vector)">Download</button>
@@ -143,25 +262,57 @@
           </div>
         </div>
       </div>
-      <div v-if="!isShowingSimilarVectors && filteredVectors.length && paginationArray.length > 1 && 6 >= paginationArray.length" class="pagination-container">
-        <button class="prev" @click="handlePagination(currentPage - 1)" :disabled="currentPage == 1">
-          <img v-if="currentPage == 1" src="../../assets/prev-disabled.svg" alt="Previous page disabled" />
+      <div
+        v-if="!isShowingSimilarVectors && filteredVectors.length && paginationArray.length > 1 && 6 >= paginationArray.length"
+        class="pagination-container"
+      >
+        <button
+          class="prev"
+          @click="handlePagination(currentPage - 1)"
+          :disabled="currentPage == 1"
+        >
+          <img
+            v-if="currentPage == 1"
+            src="../../assets/prev-disabled.svg"
+            alt="Previous page disabled"
+          />
           <img v-else src="../../assets/prev.svg" alt="Previous page" />
         </button>
         <ul class="pages">
           <li v-for="(page, index) in paginationArray" :key="index">
-            <button :class="`page ${currentPage === page + 1 ? 'current' : ''}`" @click="handlePagination(page + 1)">{{page + 1}}</button>
+            <button
+              :class="`page ${currentPage === page + 1 ? 'current' : ''}`"
+              @click="handlePagination(page + 1)"
+            >
+              {{page + 1}}
+            </button>
             <span v-if="page + 1 !== paginationArray.length" class="separator">|</span>
           </li>
         </ul>
-        <button class="next" @click="handlePagination(currentPage + 1)" :disabled="currentPage == paginationArray.length">
-          <img v-if="currentPage == paginationArray.length" src="../../assets/next-disabled.svg" alt="Next page disabled" />
+        <button
+          class="next"
+          @click="handlePagination(currentPage + 1)"
+          :disabled="currentPage == paginationArray.length"
+        >
+          <img
+            v-if="currentPage == paginationArray.length"
+            src="../../assets/next-disabled.svg"
+            alt="Next page disabled"
+          />
           <img v-else src="../../assets/next.svg" alt="Next page" />
         </button>
       </div>
       <div v-if="paginationArray.length > 6" class="pagination-container">
-        <button class="prev" @click="handlePagination(currentPage - 1)" :disabled="currentPage == 1">
-          <img v-if="currentPage == 1" src="../../assets/prev-disabled.svg" alt="Previous page disabled" />
+        <button
+          class="prev"
+          @click="handlePagination(currentPage - 1)"
+          :disabled="currentPage == 1"
+        >
+          <img
+            v-if="currentPage == 1"
+            src="../../assets/prev-disabled.svg"
+            alt="Previous page disabled"
+          />
           <img v-else src="../../assets/prev.svg" alt="Previous page" />
         </button>
         <ul class="pages">
@@ -170,38 +321,58 @@
             <span v-if="![1, 2, 3].includes(currentPage)" class="separator">...</span>
           </li>
           <li v-if="currentPage > 2">
-            <button class="page" @click="handlePagination(currentPage - 1)">{{currentPage - 1}}</button>
+            <button class="page" @click="handlePagination(currentPage - 1)">
+              {{currentPage - 1}}
+            </button>
           </li>
           <li>
             <button class="page current">{{currentPage}}</button>
           </li>
-          <li v-if="paginationArray.length > currentPage && currentPage !== paginationArray.length - 1">
-            <button class="page"  @click="handlePagination(currentPage + 1)">{{currentPage + 1}}</button>
+          <li
+            v-if="paginationArray.length > currentPage && currentPage !== paginationArray.length - 1"
+          >
+            <button class="page" @click="handlePagination(currentPage + 1)">
+              {{currentPage + 1}}
+            </button>
           </li>
           <li v-if="currentPage !== paginationArray.length">
             <span
               class="separator"
-              v-if="![paginationArray.length - 2, paginationArray.length - 1, paginationArray.length].includes(currentPage)">
+              v-if="![paginationArray.length - 2, paginationArray.length - 1, paginationArray.length].includes(currentPage)"
+            >
               ...
             </span>
-            <button class="page" @click="handlePagination(paginationArray.length)">{{paginationArray.length}}</button>
+            <button class="page" @click="handlePagination(paginationArray.length)">
+              {{paginationArray.length}}
+            </button>
           </li>
         </ul>
-        <button class="next" @click="handlePagination(currentPage + 1)" :disabled="currentPage == paginationArray.length">
-          <img v-if="currentPage == paginationArray.length" src="../../assets/next-disabled.svg" alt="Next page disabled" />
+        <button
+          class="next"
+          @click="handlePagination(currentPage + 1)"
+          :disabled="currentPage == paginationArray.length"
+        >
+          <img
+            v-if="currentPage == paginationArray.length"
+            src="../../assets/next-disabled.svg"
+            alt="Next page disabled"
+          />
           <img v-else src="../../assets/next.svg" alt="Next page" />
         </button>
       </div>
 
-      <div v-if="filteredVectors.length === 0" class="no-results"  @click="closeAutocomplete">
+      <div v-if="filteredVectors.length === 0" class="no-results" @click="closeAutocomplete">
         <img alt="Coconut illustration" src="../../assets/coco.svg" />
         <h3>Sorry, this coconut is empty</h3>
         <p v-if="searchTags.length">
-          We didn't find any result matching "<span class="highlight">{{ searchTags.join(' ') }}</span>".
+          We didn't find any result matching "<span class="highlight"
+            >{{ searchTags.join(' ') }}</span
+          >".
         </p>
         <p>
-          Please try a different search term, look within our <strong>popular tags</strong> or if you are
-          missing something, <router-link to="/#suggestion">send us your ideas</router-link>.
+          Please try a different search term, look within our <strong>popular tags</strong> or if
+          you are missing something,
+          <router-link to="/#suggestion">send us your ideas</router-link>.
         </p>
       </div>
 
@@ -210,7 +381,6 @@
           <img src="../../assets/arrow-top.svg" alt="Scroll to top" />
         </button>
       </transition>
-
     </section>
     <coco-modal
       v-if="isModalVisible && filteredVectors.length"

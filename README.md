@@ -1,26 +1,43 @@
 # coco-material-front
 
-## Project setup
-```
+## Recommended IDE Setup
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vite.dev/config/).
+
+## Project Setup
+
+```sh
 nvm install
 nvm use
-npm install
+corepack enable pnpm
+pnpm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+### Compile and Hot-Reload for Development
+
+```sh
+pnpm dev
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+### Compile and Minify for Production
+
+```sh
+pnpm build
 ```
 
-### Lints and fixes files
-```
-npm run lint
+### Lint with [ESLint](https://eslint.org/) 
+
+```sh
+pnpm lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Formatting with [Prettier](https://prettier.io/)
+
+```sh
+pnpm lint
+pnpm format
+```

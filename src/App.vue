@@ -1,20 +1,20 @@
 <template src="./App.html" lang="html"></template>
-<style src="./App.scss"  lang="scss"></style>
+<style src="./App.scss" lang="scss"></style>
 
 <script>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'app',
-  data () {
+  data() {
     return {
-      navOpen: false
+      navOpen: false,
     }
   },
   methods: {
-    openNav () {
+    openNav() {
       this.navOpen = !this.navOpen
-    }
-  }
+    },
+  },
 })
 </script>

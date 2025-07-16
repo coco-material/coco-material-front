@@ -5,19 +5,21 @@
         <div class="section-text">
           <h1 class="title">Looking for the perfect illustration?</h1>
           <h2 class="subtitle">
-            Discover CocoMaterial, the Open Source hand-drawn illustration library
-            with <strong>{{totalVectors? totalVectors.toLocaleString() : 'a lot of'}} images</strong>.
+            Discover CocoMaterial, the Open Source hand-drawn illustration library with
+            <strong>{{totalVectors? totalVectors.toLocaleString() : 'a lot of'}} images</strong>.
             Customize & download!
           </h2>
           <div class="search-container">
-            <form  id="start" autocomplete="off" class="search" onsubmit="return false;">
+            <form id="start" autocomplete="off" class="search" onsubmit="return false;">
               <label for="search">Search</label>
               <div class="search-input-wrapper">
                 <span
                   class="tag"
                   v-for="(tag, index) in tagsToSearch"
                   :key="index"
-                  @click="removeTag(tag)">x {{tag}}</span>
+                  @click="removeTag(tag)"
+                  >x {{tag}}</span
+                >
                 <input
                   id="search"
                   ref="search"
@@ -28,9 +30,15 @@
                   @keyup.delete="handleDelete"
                   @keyup="autocompleteSearch"
                   @keyup.esc="resetAutocompleteResults()"
-                  @keydown.down="focusAutocompleteResults(-1, 'down')" />
+                  @keydown.down="focusAutocompleteResults(-1, 'down')"
+                />
               </div>
-              <div id="results" ref="results" v-if="autocompleteResults.length" class="autocomplete-results">
+              <div
+                id="results"
+                ref="results"
+                v-if="autocompleteResults.length"
+                class="autocomplete-results"
+              >
                 <span
                   tabindex="1"
                   v-for="(result, index) in autocompleteResults"
@@ -39,7 +47,8 @@
                   @keyup.enter="addTag(result.slug)"
                   @keyup.esc="resetAutocompleteResults()"
                   @keydown.up="focusAutocompleteResults(index, 'up')"
-                  @keydown.down="focusAutocompleteResults(index, 'down')">
+                  @keydown.down="focusAutocompleteResults(index, 'down')"
+                >
                   {{result.slug}}
                 </span>
               </div>
@@ -56,10 +65,12 @@
 
   <h1 class="home-title">
     Recently added
-    <button class="btn-primary" @click="searchVectorByTopic('', null, '-uploaded')">View all</button>
+    <button class="btn-primary" @click="searchVectorByTopic('', null, '-uploaded')">
+      View all
+    </button>
   </h1>
   <div class="latest-wrapper" v-if="latestVectors && latestVectors.length">
-    <div class="latest-vector-wrappers" v-for="(vector, index) in latestVectors"  :key="index">
+    <div class="latest-vector-wrappers" v-for="(vector, index) in latestVectors" :key="index">
       <button class="img-container">
         <div class="svg-wrapper" tabindex="1" @click="searchVectorByTopic(vector.tags, vector.id)">
           <div
@@ -67,11 +78,16 @@
             :id="index"
             :alt="vector.name"
             @load="loaded(index)"
-            :style="getImageAsStyleBackgroundAttr(vector)"></div>
+            :style="getImageAsStyleBackgroundAttr(vector)"
+          ></div>
         </div>
       </button>
       <div class="tags-container">
-        <button class="tag" v-for="tag in tagsSeparator(vector.tags)" @click="searchVectorByTopic(tag)">
+        <button
+          class="tag"
+          v-for="tag in tagsSeparator(vector.tags)"
+          @click="searchVectorByTopic(tag)"
+        >
           {{ tag }}
         </button>
       </div>
@@ -90,7 +106,12 @@
     <div class="container">
       <h3 class="title">A PIWEEK project</h3>
       <p class="subtitle">CocoMaterial is a PIWEEK project.</p>
-      <p class="subtitle">PIWEEK is an original idea by <a href="https://kaleidos.net/" target="_blank" class="highlight">Kaleidos</a>. Every six months participants leave their ongoing work in standby to devote an entire week to personal innovative projects, either alone or joined by others.</p>
+      <p class="subtitle">
+        PIWEEK is an original idea by
+        <a href="https://kaleidos.net/" target="_blank" class="highlight">Kaleidos</a>. Every six
+        months participants leave their ongoing work in standby to devote an entire week to personal
+        innovative projects, either alone or joined by others.
+      </p>
       <a class="btn-piweek" href="https://piweek.com/" target="_blank">Know more about PIWEEK</a>
     </div>
   </div>

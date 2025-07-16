@@ -1,5 +1,5 @@
 <template src="./CocoHome.html" lang="html"></template>
-<style src="./CocoHome.scss"  lang="scss" scoped></style>
+<style src="./CocoHome.scss" lang="scss" scoped></style>
 
 <script>
 import { defineComponent } from 'vue'
@@ -17,35 +17,35 @@ export default defineComponent({
     'coco-featured-tags': CocoFeaturedTags,
     'coco-featured-topics': CocoFeaturedTopics,
     'coco-fonts': CocoFonts,
-    'coco-suggestion': CocoSuggestion
+    'coco-suggestion': CocoSuggestion,
   },
-  data () {
+  data() {
     return {
       vectors: null,
       search: '',
       tagsToSearch: [],
       autocompleteResults: [],
-      showScrollToTop: false
+      showScrollToTop: false,
     }
   },
   computed: {
     ...mapState('home', {
-      totalVectors: state => state.totalVectors,
-      latestVectors: state => state.latestVectors
+      totalVectors: (state) => state.totalVectors,
+      latestVectors: (state) => state.latestVectors,
     }),
     ...mapState('tags', {
-      tags: state => state.tags
-    })
+      tags: (state) => state.tags,
+    }),
   },
-  beforeMount () {
+  beforeMount() {
     this.clearSearchTags()
     this.getTags()
     this.getTotalVectors()
     this.getLatestVectors()
   },
-  mounted () {
+  mounted() {
     window.addEventListener('scroll', () => {
-      if ((window.innerHeight + window.scrollY) >= window.innerHeight * 1.5) {
+      if (window.innerHeight + window.scrollY >= window.innerHeight * 1.5) {
         this.showScrollToTop = true
       } else {
         this.showScrollToTop = false
@@ -56,17 +56,17 @@ export default defineComponent({
     ...mapActions({
       getTotalVectors: 'home/getTotalVectors',
       getLatestVectors: 'home/getLatestVectors',
-      getTags: 'tags/getTags'
+      getTags: 'tags/getTags',
     }),
     ...mapMutations({
-      clearSearchTags: 'tags/clearSearchTags'
+      clearSearchTags: 'tags/clearSearchTags',
     }),
-    autocompleteSearch () {
+    autocompleteSearch() {
       const text = this.search.toLocaleLowerCase()
-      const results = this.tags.filter(it => it.slug.indexOf(text) >= 0)
+      const results = this.tags.filter((it) => it.slug.indexOf(text) >= 0)
       this.autocompleteResults = levenSort(results, text, 'slug')
     },
-    focusAutocompleteResults (index, key) {
+    focusAutocompleteResults(index, key) {
       event.stopPropagation()
       event.preventDefault()
       let topPos
@@ -95,30 +95,30 @@ export default defineComponent({
         }
       }
     },
-    resetAutocompleteResults () {
+    resetAutocompleteResults() {
       this.autocompleteResults = []
       document.getElementById('search').focus()
     },
-    closeAutocomplete () {
+    closeAutocomplete() {
       this.autocompleteResults = []
     },
-    addTag (tag) {
+    addTag(tag) {
       this.tagsToSearch.push(tag.toLocaleLowerCase())
       this.search = ''
       this.$refs.search.focus()
       this.autocompleteResults = []
     },
-    removeTag (tag) {
-      const index = this.tagsToSearch.findIndex(it => it === tag)
+    removeTag(tag) {
+      const index = this.tagsToSearch.findIndex((it) => it === tag)
       this.tagsToSearch.splice(index, 1)
     },
-    searchVector () {
+    searchVector() {
       if (this.search !== '') {
         this.addTag(this.search.toLocaleLowerCase())
       }
       this.$router.push({ path: '/results', query: { q: this.tagsToSearch.join(',') } })
     },
-    searchVectorByTopic (search, vectorId, ordering) {
+    searchVectorByTopic(search, vectorId, ordering) {
       const query = {}
 
       if (search) {
@@ -135,31 +135,29 @@ export default defineComponent({
 
       this.$router.push({ path: '/results', query })
     },
-    handleDelete () {
+    handleDelete() {
       if (this.search === '') {
         this.removeTag(this.tagsToSearch.slice(-1).pop())
       }
     },
-    tagsSeparator (tags) {
+    tagsSeparator(tags) {
       return tags.replace(/\s/g, '').split(',')
     },
-    scrollToTop () {
-      window.scrollTo(
-        { top: 0, behavior: 'smooth' }
-      )
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     },
-    getImageAsStyleBackgroundAttr (vector) {
+    getImageAsStyleBackgroundAttr(vector) {
       if (vector.gif !== null || vector.coloredGif !== null) {
         return {
-          backgroundImage: `url('${vector.coloredGif || vector.gif}')`
+          backgroundImage: `url('${vector.coloredGif || vector.gif}')`,
         }
       } else {
         const svg64 = window.btoa(vector.coloredSvgContent || vector.svgContent)
         return {
-          backgroundImage: `url('data:image/svg+xml;base64,${svg64}')`
+          backgroundImage: `url('data:image/svg+xml;base64,${svg64}')`,
         }
       }
-    }
-  }
+    },
+  },
 })
 </script>
