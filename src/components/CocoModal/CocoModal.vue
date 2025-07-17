@@ -46,13 +46,13 @@ export default defineComponent({
       return !(this.vector && this.vector.svg)
     },
     disableTypeGif() {
-      return !(this.vector && (this.vector.gif || this.vector.coloredGif))
+      return !this.customizeBulk && !((this.vector && (this.vector.gif || this.vector.coloredGif)))
     },
     disableColorBW() {
-      return this.downloadType === 'gif' && !this.vector.gif
+      return !this.customizeBulk && (this.downloadType === 'gif' && !this.vector.gif)
     },
     disableColorSuggestion() {
-      return !(
+      return !this.customizeBulk && !(
         (this.downloadType !== 'gif' &&
           (this.vector.coloredSvg || this.vector.fillColor || this.vector.strokeColor)) ||
         (this.downloadType === 'gif' && this.vector.coloredGif)
