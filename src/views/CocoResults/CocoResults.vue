@@ -114,6 +114,34 @@ export default defineComponent({
 
       this.isModalVisible = true
     },
+    showBulkModal(){
+      let id = 0
+      let vector = this.filteredVectors[id]
+      let found = false
+
+      // Select image with suggested colors
+      for (const [i, v] of this.filteredVectors.entries()) {
+        if (v.coloredSvg) {
+          id = i
+          vector = v
+          found = true
+          break
+        }
+      }
+
+      // Select image with svg
+      if (!found) {
+        for (const [i, v] of this.filteredVectors.entries()) {
+          if (v.svg) {
+            id = i
+            vector = v
+            break
+          }
+        }
+      }
+
+      this.showModal(vector , true, id)
+    },
     closeModal() {
       this.selectedVector = null
       this.isHorizontal = true
