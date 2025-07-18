@@ -16,13 +16,17 @@ export default defineConfig({
       scss: {
         additionalData: `
            @use "@/css/_colors";
-        `
-      }
-    }
+        `,
+      },
+    },
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+  },
+  build: {
+    sourcemap: true,
+    manifest: true,
   },
 })
